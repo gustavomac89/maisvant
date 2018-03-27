@@ -7,28 +7,25 @@
     tools:context="br.com.maisvant.maisvant.MainActivity">
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="143dp"
-        android:layout_height="137dp"
-        android:layout_marginEnd="131dp"
-        android:layout_marginStart="131dp"
-        android:layout_marginTop="48dp"
-        android:background="@android:drawable/ic_menu_search"
-        android:backgroundTint="@android:color/black"
+        android:id="@+id/buttonmais"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="234dp"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/adicionar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botaomais" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <Button
-        android:id="@+id/botaomais"
-        android:layout_width="160dp"
-        android:layout_height="173dp"
-        android:layout_marginEnd="112dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="56dp"
-        android:background="@android:drawable/ic_menu_add"
-        android:backgroundTint="@android:color/holo_red_dark"
+        android:id="@+id/button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="234dp"
+        android:layout_marginTop="263dp"
+        android:background="@drawable/buscar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
