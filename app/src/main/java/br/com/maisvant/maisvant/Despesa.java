@@ -11,6 +11,6 @@ public class Despesa {
     public int id;
     public int tipo;
     public double valor;
-    public Date data;
+    public String dia;
     public String descricao;
 }

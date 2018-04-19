@@ -8,14 +8,12 @@ import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -78,6 +76,16 @@ public class MainActivity extends AppCompatActivity {
         Button mais = (Button) findViewById(R.id.buttonmais);
         listview.setAdapter(adapter);
         listview.setVisibility(View.INVISIBLE);
+
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object listItem = listview.getItemAtPosition(position);
+                Intent intent = new Intent(MainActivity.this, AdicionarDespesa.class);
+                intent.putExtra("item",listItem.toString());
+                startActivity(intent);
+            }
+        });
 
         mais.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
