@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,23 +20,9 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    // lock
-    static Object tranca = new Object();
-
-    private static BancoDeDespesas banco;
-
-    static BancoDeDespesas bancoDeDespesas(Context context) {
-        synchronized (tranca) {
-            if (banco == null)
-                banco = Room.databaseBuilder(context,
-                        BancoDeDespesas.class, "base-1").build();
-            return banco;
-        }
-    }
-
     private Handler handlerThreadPrincipal;
     private Executor executorThreadDoBanco;
-    private BancoDeDespesas base;
+
     Intent i;
     private List<String> listaAtual;
     String[] opc = { "Combustivel", "Manutenção","Estacionamento","Outros" };
@@ -47,22 +34,17 @@ public class MainActivity extends AppCompatActivity {
 
         handlerThreadPrincipal = new Handler(Looper.getMainLooper());
         executorThreadDoBanco = Executors.newSingleThreadExecutor();
-        base = bancoDeDespesas(getApplicationContext());
 
         rodarNaThreadDoBanco(
                 new Runnable() {
                     @Override
                     public void run() {
-                        DespesaDao dao = base.despesaDao();
-                        List<Despesa> despesas = dao.listar();
-                        listaAtual = new ArrayList<>();
-                        for (Despesa i: despesas) {
-                            listaAtual.add(i.descricao);
-                        }
+                        BancoDeDespesas banco = BancoDeDespesas.obterInstanciaUnica(MainActivity.this);
+                        DespesaDao dao = banco.despesaDao();
                         rodarNaThreadPrincipal(new Runnable() {
                             @Override
                             public void run() {
-                                preencherConteúdo();
+                                atualizar();
                             }
                         });
                     }
@@ -70,10 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         final ListView listview = (ListView) findViewById(R.id.lista);
-        final ListView rec = (ListView) findViewById(R.id.recentes);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, opc);
 
-        Button mais = (Button) findViewById(R.id.buttonmais);
+        ImageButton mais = (ImageButton) findViewById(R.id.buttonmais);
         listview.setAdapter(adapter);
         listview.setVisibility(View.INVISIBLE);
 
@@ -83,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 Object listItem = listview.getItemAtPosition(position);
                 Intent intent = new Intent(MainActivity.this, AdicionarDespesa.class);
                 intent.putExtra("item",listItem.toString());
-                startActivity(intent);
+                startActivityForResult(intent, 0);
             }
         });
 
@@ -99,16 +80,33 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void preencherConteúdo() {
-        final ListView listview = (ListView) findViewById(R.id.recentes);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        atualizar();
+    }
 
-        if (listaAtual == null) {
-            listview.setAdapter(null);
-            return;
-        }
+    private void atualizar() {
+        rodarNaThreadDoBanco(new Runnable() {
+            @Override
+            public void run() {
+                BancoDeDespesas banco = BancoDeDespesas.obterInstanciaUnica(MainActivity.this);
+                DespesaDao dao = banco.despesaDao();
+                final List<Despesa> despesas = dao.listar();
+                rodarNaThreadPrincipal(new Runnable() {
+                    @Override
+                    public void run() {
+                        ListView lista = findViewById(R.id.recentes);
+                        ArrayAdapter<Despesa> adaptador = new ArrayAdapter<>(
+                                MainActivity.this,
+                                android.R.layout.simple_list_item_1,
+                                despesas);
+                    lista.setAdapter(adaptador);
 
-        ArrayAdapter<String> adRecente = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listaAtual);
-        listview.setAdapter(adRecente);
+                    }
+                });
+            }
+        });
     }
 
     void rodarNaThreadPrincipal(Runnable acao) {
