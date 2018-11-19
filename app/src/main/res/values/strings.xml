@@ -1,4 +1,25 @@
 <resources>
     <string name="app_name">Vant</string>
     <string name="adicionar">ADICIONAR</string>
+    <string name="adicionar_despesa">Adicionar Despesa</string>
+    <string name="textview">TextView</string>
+    <string name="title_activity_login">Login</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Senha</string>
+    <string name="action_save">Salvar</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_delete">Excluir</string>
+    <string name="action_new">Novo</string>
+    <string name="action_sign_in_short">Entrar</string>
+    <string name="action_sign_in">Entrar</string>
+    <string name="action_sign_up">Cadastrar</string>
+    <string name="error_invalid_email">Este e-mail não é válido</string>
+    <string name="error_invalid_password">Esta senha é muito curta</string>
+    <string name="error_incorrect_password">Senha incorreta</string>
+    <string name="error_field_required">Campo obrigatório</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 </resources>

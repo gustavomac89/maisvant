@@ -7,7 +7,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 
-@Database(entities = {Despesa.class}, version = 3, exportSchema = false)
+@Database(entities = {Despesa.class, Orcamento.class, Tipo.class, Veiculo.class}, version = 6, exportSchema = false)
 public abstract class BancoDeDespesas extends RoomDatabase {
 
     private static BancoDeDespesas instancia;
@@ -24,5 +24,7 @@ public abstract class BancoDeDespesas extends RoomDatabase {
         }
     }
     public abstract  DespesaDao despesaDao();
-
+    public abstract  OrcamentoDao orcamentoDao();
+    public abstract  TipoDao tipoDao();
+    public abstract  VeiculoDao veiculoDao();
 }

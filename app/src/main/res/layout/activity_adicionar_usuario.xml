@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdicionarDespesa">
+    tools:context=".AdicionarUsuario">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -21,14 +21,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="150dp"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:orientation="vertical">
 
+
             <TextView
-                android:id="@+id/textAddDespesa"
+                android:id="@+id/textAddUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Adicionar Despesa"
+                android:text="Cadastrar Usuário"
                 android:textSize="24sp" />
 
             <LinearLayout
@@ -37,69 +38,37 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tipoLabel"
-                    android:layout_width="80dp"
+                    android:id="@+id/emailLabel"
+                    android:layout_width="163dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Tipo:" />
-
-                <Spinner
-                    android:id="@+id/tipo"
-                    android:layout_width="200dp"
-                    android:layout_height="54dp"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:id="@+id/gerenciar_tipo"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/manutencao" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/veiculoLabel"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Veículo:" />
-
-                <Spinner
-                    android:id="@+id/veiculo"
-                    android:layout_width="200dp"
-                    android:layout_height="54dp"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:id="@+id/gerenciar_veiculo"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/manutencao" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/descricaoLabel"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Descrição:" />
+                    android:text="E-mail:" />
 
                 <EditText
-                    android:id="@+id/cDescricao"
-                    android:layout_width="300dp"
+                    android:id="@+id/cEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textEmailAddress" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/nomeLabel"
+                    android:layout_width="164dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nome:" />
+
+                <EditText
+                    android:id="@+id/cNome"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
@@ -107,30 +76,49 @@
 
             </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cpfLabel"
+                android:layout_width="164dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CPF:" />
+
+            <EditText
+                android:id="@+id/cCpf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="text" />
+
+        </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/valorLabel"
-                    android:layout_width="80dp"
+                    android:id="@+id/senhaLabel"
+                    android:layout_width="164dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Valor:" />
+                    android:text="Senha:" />
 
                 <EditText
-                    android:id="@+id/cValor"
-                    android:layout_width="300dp"
+                    android:id="@+id/cSenha"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="numberDecimal" />
+                    android:inputType="textPassword" />
 
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
 
     <Button
@@ -138,7 +126,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="6"
-        android:text="@string/adicionar"
+        android:text="@string/action_sign_up"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 </android.support.constraint.ConstraintLayout>

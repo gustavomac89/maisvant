@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.maisvant.maisvant">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/vant_logo"
@@ -16,7 +23,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AdicionarDespesa"></activity>
+        <activity android:name=".AdicionarDespesa" />
+        <activity android:name=".GerenciarTipo" />
+        <activity android:name=".GerenciarVeiculo" />
+        <activity android:name=".AdicionarTipo" />
+        <activity android:name=".AdicionarVeiculo" />
+        <activity android:name=".EditarVeiculo" />
+        <activity android:name=".EditarTipo" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".NotificaActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"></activity>
     </application>
 
 </manifest>
